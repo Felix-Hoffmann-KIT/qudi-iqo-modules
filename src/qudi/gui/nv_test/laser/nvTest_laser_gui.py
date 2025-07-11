@@ -36,6 +36,9 @@ class NvTestLaserGui(GuiBase):
         self._mw.reset_button.clicked.connect(
             self._nvTest_logic().reset_counter, QtCore.Qt.QueuedConnection
         )
+        self._mw.API_button.clicked.connect(
+            self._nvTest_logic().API_counter, QtCore.Qt.QueuedConnection
+        )
         self._nvTest_logic().sigCounterUpdated.connect(
             self._mw.count_spinbox.setValue, QtCore.Qt.QueuedConnection
         )
@@ -47,6 +50,7 @@ class NvTestLaserGui(GuiBase):
         self._nvTest_logic().sigCounterUpdated.disconnect(self._mw.count_spinbox.setValue)
         # Use "plain" disconnects (without argument) only on signals owned by this module
         self._mw.reset_button.clicked.disconnect()
+        self._mw.API_button.clicked.disconnect()
         self.sigAddToCounter.disconnect()
         self._mw.add_ten_button.clicked.disconnect()
         self._mw.sub_ten_button.clicked.disconnect()

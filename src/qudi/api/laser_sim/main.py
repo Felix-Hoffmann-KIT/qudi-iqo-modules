@@ -37,3 +37,8 @@ def set_wavelength(cmd: WavelengthCommand):
 @app.get("/readback/", response_model=LaserStatus)
 def readback():
     return sim.read_status()
+
+@app.post("/toggle/")
+def toggle_laser():
+    sim.set_power(not sim.on)
+    return {"status": "ok", "on": sim.on, "wavelength_nm": sim.wavelength_nm, "power_mw": sim.power_mw}

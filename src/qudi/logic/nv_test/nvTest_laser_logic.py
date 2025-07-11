@@ -8,6 +8,8 @@ from qudi.core.statusvariable import StatusVar
 from qudi.core.configoption import ConfigOption
 from qudi.util.mutex import Mutex
 
+import requests
+
 
 # qudi logic measurement modules must inherit qudi.core.module.LogicBase or other logic modules.
 class NvTestLaserLogic(LogicBase):
@@ -83,3 +85,13 @@ class NvTestLaserLogic(LogicBase):
         with self._mutex:
             self._counter_value = 0
             self.sigCounterUpdated.emit(self._counter_value)
+            
+    def API_counter(self) -> None:
+        with self._mutex:
+            self.log.info("API Laser Hardware connected to %s", self._nvTest_hardware().base_url)
+            r = requests.get(f"{self._nvTest_hardware().base_url}/status/")
+            data = r.json()
+            if data['on']:
+                self.__timer.start()
+            else:
+                self.__timer.stop()

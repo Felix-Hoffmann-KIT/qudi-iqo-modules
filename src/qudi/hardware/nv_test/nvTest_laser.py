@@ -21,7 +21,8 @@ class NvTestLaser(NvTestLaserInterface):
         self._mutex = Mutex()
 
     def on_activate(self) -> None:
-        pass
+        self.base_url = "http://127.0.0.1:8000"
+        self.log.info("API Laser Hardware connected to %s", self.base_url)
 
     def on_deactivate(self) -> None:
         pass

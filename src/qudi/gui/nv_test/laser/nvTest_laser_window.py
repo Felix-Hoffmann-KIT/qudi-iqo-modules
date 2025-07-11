@@ -13,6 +13,9 @@ class NvTestLaserMainWindow(QtWidgets.QMainWindow):
         self.reset_button = QtWidgets.QPushButton('Reset')
         self.reset_button.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
                                         QtWidgets.QSizePolicy.Expanding)
+        self.API_button = QtWidgets.QPushButton('API: On/Off')
+        self.API_button.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
+                                        QtWidgets.QSizePolicy.Expanding)
         self.add_ten_button = QtWidgets.QPushButton('+10')
         self.sub_ten_button = QtWidgets.QPushButton('-10')
         self.count_spinbox = QtWidgets.QSpinBox()
@@ -32,6 +35,7 @@ class NvTestLaserMainWindow(QtWidgets.QMainWindow):
         layout.addWidget(self.count_spinbox, 1, 1)
         layout.addWidget(self.add_ten_button, 1, 2)
         layout.addWidget(self.reset_button, 2, 0, 1, 3)
+        layout.addWidget(self.API_button, 3, 0, 1, 3)
         layout.setColumnStretch(1, 1)
         # Create dummy widget as main widget and set layout
         central_widget = QtWidgets.QWidget()
